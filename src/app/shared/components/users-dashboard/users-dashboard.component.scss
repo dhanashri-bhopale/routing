@@ -1,0 +1,15 @@
+.cursor{
+    cursor: pointer;
+}
+
+.list-group-item {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.list-group-item:hover {
+  background-color: #e9ecef;
+  color: red;
+  font-weight: 500;
+  border-left: 4px solid red;
+}

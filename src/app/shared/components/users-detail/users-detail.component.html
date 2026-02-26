@@ -1,0 +1,71 @@
+<div class="row my-4">
+    <div class="col-12 text-right">
+        <h2 routerLink="/users">
+            <span class="badge text-danger cursor">
+                <u>Go Back</u>
+            </span>
+        </h2>
+    </div>
+</div>
+
+<div class="row my-4" *ngIf="userObj">
+    <div class="col-md-3 offset-md-2 mb-4">
+        <img [src]="userObj.profileImage" alt="">
+        <mat-card class="matCard">
+            <mat-card-title><strong>{{userObj.userName}}</strong><br></mat-card-title>
+            <mat-card-subtitle>
+                <strong>{{userObj.userRole}}</strong>
+                <p>{{userObj.profileDescription}}</p>
+            </mat-card-subtitle>
+            <mat-card-actions class="d-flex justify-content-between">
+                <button routerLink="edit" mat-raised-button color="primary">Edit</button>
+                <button (click)="onDelete()" mat-raised-button color="warn">Delete</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+    <div class="col-md-6">
+        <mat-card class="mb-3">
+            <strong>Information :</strong>
+
+            <p>UserId : {{userObj.userId}}</p>
+            <p>Experience : {{userObj.experienceYears}} Years</p>
+            Status : <span class="badge" [ngClass]="{
+                'badge-success' : userObj.isActive,
+                'badge-danger' : !userObj.isActive
+            }">{{userObj.isActive ? 'Active' : 'In-Active'}}</span>
+
+            <h2>Skills</h2>
+            <mat-chip-list class="example-chip" cdkDropList cdkDropListOrientation="horizontal">
+                <mat-chip class="example-box" cdkDrag *ngFor="let skill of userObj.skills">
+                    {{skill}}
+                </mat-chip>
+            </mat-chip-list>
+        </mat-card>
+
+        <mat-card>
+            <mat-card-content>
+                <div class="row">
+                    <div class="col-6">
+                        <b class="mb-2">Current Address</b>
+                        <ul class="list-group">
+                            <li class="list-group-item">Country : {{userObj.address.current.country}}</li>
+                            <li class="list-group-item">State : {{userObj.address.current.state}}</li>
+                            <li class="list-group-item">City : {{userObj.address.current.city}}</li>
+                            <li class="list-group-item">Zipcode : {{userObj.address.current.zipcode}}</li>
+                        </ul>
+                    </div>
+                    <div class="col-6">
+                        <b class="mb-2">Permanant Address</b>
+                        <ul class="list-group">
+                            <li class="list-group-item">Country : {{userObj.address.permanent.country}}</li>
+                            <li class="list-group-item">State : {{userObj.address.permanent.state}}</li>
+                            <li class="list-group-item">City : {{userObj.address.permanent.city}}</li>
+                            <li class="list-group-item">Zipcode : {{userObj.address.permanent.zipcode}}</li>
+                        </ul>
+                    </div>
+                </div>
+            </mat-card-content>
+
+        </mat-card>
+    </div>
+</div>

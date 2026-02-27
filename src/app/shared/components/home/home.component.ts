@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
   }
 
   onLoad(){
-    this._router.navigate(['products'])
+    this._router.navigate(['users'])
   }
 
 }
